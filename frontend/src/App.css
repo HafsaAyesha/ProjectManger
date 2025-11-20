@@ -1,0 +1,29 @@
+/* src/App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* Reusable Button Styles (Used in Hero, Pricing, CTA) */
+.primary-btn, .pricing-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.secondary-btn, .pricing-btn.secondary {
+  color: #667eea;
+  border: 2px solid #667eea;
+  background: transparent;
+}

@@ -17,10 +17,10 @@ const Register = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            // Adjust the URL to your backend API endpoint
             const response = await axios.post("http://localhost:1000/api/v1/register", data);
             
-            alert(response.data.message || "Registration Successful!");
+            // The response.data.message should now be 'Registration successful'
+            alert(response.data.message || "Registration Successful!"); 
             
             // Optionally redirect to login page
             // navigate('/login'); 

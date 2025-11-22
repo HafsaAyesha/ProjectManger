@@ -16,13 +16,13 @@ import Register from "./components/Auth/Register"; // <-- CORRECT: No braces
 const App = () => {
   return (
     <Router>
-      <Navbar /> 👈 (Always visible)
+      <Navbar /> 
       <Routes>
-        <Route path="/" element={<Home />} /> 👈 (Static landing page content)
+        <Route path="/" element={<Home />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <Footer /> 👈 (Always visible)
+      <Footer /> 
     </Router>
   );
 };

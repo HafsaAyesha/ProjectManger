@@ -13,7 +13,7 @@ router.post("/addTask", async (req, res) => {
         const existingUser = await User.findOne({email});
     
         if (existingUser) {
-            const list = new List({title, body, user: existingUser});
+            const list = new List({ title, body, user: existingUser._id, status: "todo" });
             await list.save().then(() => res.status(200).json({list}));
             existingUser.list.push(list);
             existingUser.save();
@@ -35,8 +35,8 @@ router.put("/updateTask/:id", async (req, res) => {
         const existingUser = await User.findOne({email});
     
         if (existingUser) {
-            const list = await List.findByIdAndUpdate(req.params.id, {title, body});
-            list.save().then(() => res.status(200).json({message: "Task Updated"}));
+            await List.findByIdAndUpdate(req.params.id, { title, body });
+            res.status(200).json({ message: "Task Updated" });            
         }
 
     } catch(error) {
@@ -57,7 +57,10 @@ router.delete("/deleteTask/:id", async (req, res) => {
         const existingUser = await User.findOneAndUpdate({email}, {$pull: {list: req.params.id}});
     
         if (existingUser) {
-            await List.findByIdAndUpdate(req.params.id).then(() => res.status(200).json({message: "Task Deleted"}));
+            await List.findByIdAndDelete(req.params.id);
+            res.status(200).json({ message: "Task Deleted" });
+            await User.findOneAndUpdate({ email }, { $pull: { list: req.params.id } });
+            
         }
 
     } catch(error) {

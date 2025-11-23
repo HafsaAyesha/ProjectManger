@@ -1,5 +1,9 @@
-// src/pages/Home.jsx
+// src/Pages/Home.jsx
 import React from 'react';
+
+// Layout Components
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 // Import all static sections
 import Hero from '../components/Hero/Hero';
@@ -12,12 +16,14 @@ import CTA from '../components/CTA/CTA';
 const Home = () => {
   return (
     <>
+      <Navbar />
       <Hero />
       <Stats />
       <Features />
       <UseCases />
       <Testimonials />
       <CTA />
+      <Footer />
     </>
   );
 };

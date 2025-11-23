@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
 
-const Register = () => {
-    const [data, setData] = useState({
-        email: "",
-        username: "",
-        password: "",
-    });
+const Register = ({ setUser }) => {
+    const navigate = useNavigate();
+    const [data, setData] = useState({ email: "", username: "", password: "" });
 
     const changeHandler = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -18,65 +15,37 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await axios.post("http://localhost:1000/api/v1/register", data);
-            
-            // The response.data.message should now be 'Registration successful'
-            alert(response.data.message || "Registration Successful!"); 
-            
-            // Optionally redirect to login page
-            // navigate('/login'); 
+
+            alert(response.data.message || "Registration Successful!");
+
+            const userData = response.data.user || { email: data.email, username: data.username }; 
+            setUser(userData);        // <-- update App.js state
+            navigate("/kanban");      // <-- redirect to Kanban page
 
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || "Registration Failed. Please try again.");
+            alert(error.response?.data?.message || "Registration Failed.");
         }
     };
 
     return (
         <div className="auth-container">
             <form className="auth-form" onSubmit={submitHandler}>
-                <h2>Get Started (Sign Up)</h2>
-                
+                <h2>Sign Up</h2>
                 <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        value={data.email} 
-                        onChange={changeHandler} 
-                        required 
-                    />
+                    <label>Email</label>
+                    <input type="email" name="email" value={data.email} onChange={changeHandler} required />
                 </div>
-                
                 <div className="input-group">
-                    <label htmlFor="username">Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        value={data.username} 
-                        onChange={changeHandler} 
-                        required 
-                    />
+                    <label>Username</label>
+                    <input type="text" name="username" value={data.username} onChange={changeHandler} required />
                 </div>
-                
                 <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        value={data.password} 
-                        onChange={changeHandler} 
-                        required 
-                    />
+                    <label>Password</label>
+                    <input type="password" name="password" value={data.password} onChange={changeHandler} required />
                 </div>
-                
                 <button type="submit" className="auth-btn">Register</button>
-                
-                <p>
-                    Already have an account? <Link to="/login">Login here</Link>
-                </p>
+                <p>Already have an account? <Link to="/login">Login here</Link></p>
             </form>
         </div>
     );

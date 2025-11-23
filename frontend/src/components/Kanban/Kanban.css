@@ -101,3 +101,57 @@
     background-color: #c53030;
   }
   
+
+/* Success banner theme for Kanban page */
+.pm-success-banner {
+    position: fixed;
+    top: 80px; /* below PMNavbar */
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    max-width: 500px;
+    z-index: 1000;
+    animation: slideDown 0.4s ease;
+  }
+  
+  /* Slide down animation */
+  @keyframes slideDown {
+    0% { transform: translate(-50%, -50px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+  }
+  
+  /* Close button */
+  .pm-success-banner .close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+  
+  .pm-success-banner .close-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .kanban-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .kanban-container {
+    flex: 1; /* Take remaining space */
+  }

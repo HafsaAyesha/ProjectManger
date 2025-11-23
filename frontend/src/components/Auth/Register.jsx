@@ -11,22 +11,24 @@ const Register = ({ setUser }) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
+    // Register.jsx
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:1000/api/v1/register", data);
-
-            alert(response.data.message || "Registration Successful!");
-
-            const userData = response.data.user || { email: data.email, username: data.username }; 
-            setUser(userData);        // <-- update App.js state
-            navigate("/kanban");      // <-- redirect to Kanban page
-
+        const response = await axios.post("http://localhost:1000/api/v1/register", data);
+    
+        const userData = response.data.user || { email: data.email, username: data.username };
+        setUser(userData);
+    
+        // Navigate to Kanban page with a success message in state
+        navigate("/kanban", { state: { message: `Welcome, ${userData.username}! Registration Successful.` } });
+    
         } catch (error) {
-            console.error(error);
-            alert(error.response?.data?.message || "Registration Failed.");
+        console.error(error);
+        alert(error.response?.data?.message || "Registration Failed.");
         }
     };
+  
 
     return (
         <div className="auth-container">

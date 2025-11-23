@@ -11,24 +11,27 @@ const Login = ({ setUser }) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
+// Login.jsx
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:1000/api/v1/signin", data);
-            
-            const userData = response.data.others; // assuming backend returns user info
-            
-            setUser(userData); // <-- update App.js state
-            
-            alert("Login Successful! Welcome, " + userData.username);
-            
-            navigate("/kanban"); // <-- redirect to Kanban page
+        const response = await axios.post("http://localhost:1000/api/v1/signin", data);
+        const userData = response.data.others;
+    
 
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
+
+    
+        // Navigate to Kanban page with a success message in state
+        navigate("/kanban", { state: { message: `Welcome, ${userData.username}! Login Successful.` } });
+    
         } catch (error) {
-            console.error(error);
-            alert(error.response?.data?.message || "Login Failed.");
+        console.error(error);
+        alert(error.response?.data?.message || "Login Failed.");
         }
     };
+  
 
     return (
         <div className="auth-container">

@@ -1,18 +1,21 @@
-// src/components/PMNavbar/PMNavbar.jsx
 import React from "react";
-import "./PMNavbar.css";
 import { Link } from "react-router-dom";
+import "./PMNavbar.css";
 
 const PMNavbar = ({ user }) => {
   return (
     <nav className="pm-navbar">
-      <div className="pm-brand">Project Manager</div>
+      <div className="pm-brand">ProjectManager</div>
+
       <ul className="pm-nav-links">
         <li><Link to="/kanban">Kanban</Link></li>
-        <li><Link to="/projects">Projects</Link></li>
-        <li><Link to="/teams">Teams</Link></li>
-        <li>{user ? `Hello, ${user.username}` : <Link to="/login">Login</Link>}</li>
+        <li><Link to="/tasks">Tasks</Link></li>
+        <li><Link to="/calendar">Calendar</Link></li>
       </ul>
+
+      <div className="user-info">
+        <span>Welcome, {user ? user.username : "Login"}</span>
+      </div>
     </nav>
   );
 };

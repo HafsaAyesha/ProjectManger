@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // <-- Add useLocation hook
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); // <-- Get current URL path
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const menuItems = [
-    // Standard section links. We still use 'href' for scrolling.
+    // Standard section links. These must start with '#' in href.
     { text: 'Features', href: '#features' }, 
     { text: 'Pricing', href: '#pricing' }, 
     { text: 'Reviews', href: '#testimonials' }, 
@@ -23,10 +23,9 @@ const Navbar = () => {
 
   // Helper function to determine the correct element to render
   const renderMenuItem = (item) => {
-    // Determine if it's an internal section link (starts with #)
     const isInternalAnchor = item.href && item.href.startsWith('#');
 
-    // If it's the Home page AND an internal anchor, use an <a> tag for natural scrolling.
+    // 1. Home Page Section Link: Use <a> tag for natural scrolling/hash-change on the same page.
     if (isInternalAnchor && location.pathname === '/') {
       return (
         <a 
@@ -38,10 +37,15 @@ const Navbar = () => {
         </a>
       );
     } 
-    // Otherwise (for all external routes: /login, /register, or section links from other pages), use <Link>.
+    // 2. External Routes or Section Link from Non-Home Page: Use <Link>.
     else {
-      // Use 'to' for routing, prioritizing 'to' if it exists, otherwise use 'href' for a simple path change
-      const targetPath = item.to || item.href; 
+      // Logic for targetPath:
+      // If it's an internal section link (e.g., #features), we route to '/#features' 
+      // so React Router takes the user back to the home page with the scroll hash.
+      // Otherwise, use the standard 'to' or 'href' path (e.g., /login).
+      const targetPath = isInternalAnchor 
+        ? `/${item.href}` 
+        : (item.to || item.href); 
       
       return (
         <Link

@@ -13,7 +13,6 @@ const Navbar = () => {
   const menuItems = [
     // Standard section links. These must start with '#' in href.
     { text: 'Features', href: '#features' }, 
-    { text: 'Pricing', href: '#pricing' }, 
     { text: 'Reviews', href: '#testimonials' }, 
     
     // Auth links MUST use 'to'

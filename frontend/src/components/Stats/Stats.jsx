@@ -10,7 +10,7 @@ const Stats = () => {
   ];
 
   return (
-    <section className="header-info">
+    <section id="statistics" className="header-info">
       {stats.map((stat, index) => (
         <div className="info" key={index}>
           <div className="icon"><i className={`fa-solid ${stat.icon}`}></i></div>

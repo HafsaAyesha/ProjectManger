@@ -1,28 +1,42 @@
 import React from 'react';
 import './UseCases.css';
 
+const useCaseData = [
+    { number: 1, title: "Web Developers", desc: "Manage client projects, track milestones, and deliver on time with version control integration and agile boards." },
+    { number: 2, title: "Designers & Agencies", desc: "Organize visual assets, share mockups directly with clients, and gather feedback seamlessly with annotation tools." },
+    { number: 3, title: "Consultants", desc: "Track billable hours across multiple engagements, manage client relationships (CRM), and automate invoicing for time spent." },
+    { number: 4, title: "Marketing Teams", desc: "Coordinate cross-platform campaigns, manage content calendars, and collaborate on copy and assets effortlessly." }
+];
+
 const UseCases = () => {
   return (
-    /* We apply the background image here so React looks in the 'public' folder */
-    <section className="use-cases" style={{ backgroundImage: 'url(/img_2.jpeg)' }}>
-      <div className="use-cases-content">
-        <div className="text-box">
+    <section className="use-cases-section" id="use-cases">
+      <div className="use-cases-container">
+
+        <div className="use-cases-content-column">
           <h2>Built for Your Workflow</h2>
           <p className="intro">
-            Whether you're a solo freelancer or managing a team, Freelance Flow adapts to your needs.
+            From solo freelancers to small agencies, Freelance Flow provides dedicated features to handle client collaboration, time tracking, and project delivery.
           </p>
-          {[
-            { title: "1. Web Developers", desc: "Manage client projects, track milestones, and deliver on time with version control integration." },
-            { title: "2. Designers", desc: "Organize projects, share mockups with clients, and iterate based on feedback seamlessly." },
-            { title: "3. Consultants", desc: "Track engagements, billable hours, and deliverables in one centralized platform." },
-            { title: "4. Marketing Teams", desc: "Coordinate campaigns, manage content calendars, and collaborate effortlessly." }
-          ].map((item, index) => (
-            <div className="use-case-item" key={index}>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
-          ))}
+
+          <div className="use-case-list">
+            {useCaseData.map((item) => (
+              <div className="use-case-item" key={item.number}>
+                <div className="use-case-number">{item.number}</div>
+                <div className="use-case-details">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+  
+        <div className="use-cases-visual-column">
+          <img src="/img_2.png" alt="Project management dashboard illustration" />
+        </div>
+
       </div>
     </section>
   );

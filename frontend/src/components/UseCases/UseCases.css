@@ -1,55 +1,134 @@
-.use-cases {
-    padding: 100px 0;
-    color: #fff;
+
+
+/* Main Section Wrapper */
+.use-cases-section {
+    padding: 50px 0;
+    background: #ffffff; 
+    color: #1a1a1a;
     overflow: hidden;
-    position: relative;
 }
 
-.use-cases-content {
+/* Container for the Two-Column Layout */
+.use-cases-container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column; 
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px; 
     align-items: center;
-    padding: 120px 15% 120px 20%;
-    min-height: 500px;
 }
 
-.text-box {
-    background: rgba(255, 255, 255, 0.9);
-    color: #222;
-    padding: 40px;
-    margin-right: 60px;
+/* Image/Visual Column */
+.use-cases-visual-column {
+    flex: 1;
+    min-width: 300px;
+    padding: 0 10px;
+}
+
+.use-cases-visual-column img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; 
     border-radius: 16px;
-    max-width: 500px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); 
 }
 
-.text-box h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #4a4ae6;
+/* Text/Content Column */
+.use-cases-content-column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 550px; 
 }
 
-.text-box .intro {
-    font-size: 15px;
+/* Header */
+.use-cases-content-column h2 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.use-cases-content-column .intro {
+    font-size: 17px; 
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 30px; 
     line-height: 1.6;
 }
 
+/* Use Case List Items (Staggered/Numbered List Style) */
+.use-case-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .use-case-item {
-    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+    transition: background 0.3s ease;
 }
 
-.use-case-item h3 {
-    color: #333;
-    font-size: 17px;
+/* Number/Icon Styling */
+.use-case-number {
+    width: 32px; 
+    height: 32px;
+    min-width: 32px;
+    background: linear-gradient(135deg, #667eea, #764ba2); /* Gradient Accent */
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-right: 15px;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
 }
 
-.use-case-item p {
+.use-case-details {
+    padding-top: 2px;
+}
+
+.use-case-details h3 {
+    color: #4a4ae6; 
+    font-size: 17px; 
+    font-weight: 700;
+    margin-bottom: 4px; 
+}
+
+.use-case-details p {
     color: #666;
-    font-size: 14px;
+    font-size: 14px; 
     line-height: 1.5;
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 992px) {
+    .use-cases-section {
+        padding: 100px 0; 
+    }
+    
+    .use-cases-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 90px; 
+        align-items: center; 
+    }
+    
+    .use-cases-visual-column {
+        order: 2; 
+        flex: 1.2; 
+        align-self: center; 
+    }
+    
+    .use-cases-content-column {
+        order: 1; 
+        flex: 0.8; 
+    }
+    
+    .use-cases-content-column h2 {
+        font-size: 44px; 
+    }
 }

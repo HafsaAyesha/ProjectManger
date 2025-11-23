@@ -1,9 +1,8 @@
-/* src/components/Hero/Hero.css */
+
 .hero {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 40px 20px;
     background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
 }
 
@@ -19,7 +18,6 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .hero-text p {
@@ -32,32 +30,20 @@
 .hero-buttons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     margin-bottom: 24px;
 }
 
-.primary-btn, .secondary-btn {
+.primary-btn {
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
     border: none;
-    cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
 }
-/* Note: I kept button styles here too just in case, but they are also in App.css */
 
-.hero-trust {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: #999;
-}
-
-.hero-trust i { color: #667eea; }
 
 .hero img {
     width: 100%;
@@ -70,7 +56,7 @@
 @media (min-width: 601px) {
     .hero {
         flex-direction: row;
-        padding: 60px 40px;
+        padding: 30px 40px;
         gap: 40px;
         min-height: 500px;
     }
@@ -82,7 +68,7 @@
     .hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 100px 60px;
+        padding: 20px 60px;
         gap: 60px;
         min-height: 600px;
         align-items: center;

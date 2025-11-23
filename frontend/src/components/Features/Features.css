@@ -1,3 +1,4 @@
+/* --- Features Section Styling --- */
 .features {
     padding: 60px 20px;
     background: #f8f9fb;
@@ -23,9 +24,11 @@
 }
 
 .features-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid; /* Changed from flex-direction: column to grid for better responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Increased gap for better spacing */
+    max-width: 1200px; /* Optional: Center the grid content */
+    margin: 0 auto; /* Optional: Center the grid content */
 }
 
 .feature-card {
@@ -69,20 +72,15 @@
     line-height: 1.6;
 }
 
-/* MEDIA QUERIES */
-@media (min-width: 601px) {
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+/* --- Responsive Adjustments (Optional but Recommended) --- */
+@media (max-width: 768px) {
+    .features {
+        padding: 40px 15px;
     }
-    .section-header h2 { font-size: 36px; }
-}
 
-@media (min-width: 993px) {
-    .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
+    .section-header h2 {
+        font-size: 28px;
     }
-    .section-header h2 { font-size: 42px; }
+
+    /* .features-grid will now stack or use the minmax(280px, 1fr) for one column if needed */
 }

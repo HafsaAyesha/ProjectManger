@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./Pages/Home";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Dashboard from "./Pages/Dashboard";
 import KanbanPage from "./Pages/KanbanPage";
 
 const App = () => {
@@ -21,8 +22,19 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
 
+        {/* DEFAULT page → Dashboard */}
+        <Route
+          path="/"
+          element={
+            user ? <Dashboard user={user} /> : <Navigate to="/login" />
+          }
+        />
+
+        {/* Home moved to /home (optional) */}
+        <Route path="/home" element={<Home />} />
+
+        {/* Login */}
         <Route
           path="/login"
           element={
@@ -34,6 +46,7 @@ const App = () => {
           }
         />
 
+        {/* Register */}
         <Route
           path="/register"
           element={
@@ -45,6 +58,7 @@ const App = () => {
           }
         />
 
+        {/* Kanban Page */}
         <Route
           path="/kanban"
           element={

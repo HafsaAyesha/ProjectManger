@@ -12,6 +12,8 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import KanbanPage from "./Pages/KanbanPage";
 
+import DashboardPage from "./Pages/DashboardPage";
+
 const App = () => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
@@ -50,6 +52,17 @@ const App = () => {
           element={
             user ? (
               <KanbanPage userId={user._id} email={user.email} user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            user ? (
+              <DashboardPage userId={user._id} user={user} />
             ) : (
               <Navigate to="/login" />
             )

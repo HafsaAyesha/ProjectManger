@@ -1,0 +1,6 @@
+import React from 'react';
+import './ui.css';
+
+export function Card({ className, children }) {
+  return <div className={`ui-card ${className || ''}`}>{children}</div>;
+}

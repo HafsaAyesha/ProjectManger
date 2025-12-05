@@ -21,7 +21,7 @@ const KanbanPage = ({ userId, email, user }) => {
 
   const closeMessage = () => setMessage("");
 
-
+//
   return (
     <div className="kanban-page-wrapper">
       <PMNavbar user={user} />

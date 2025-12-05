@@ -1,0 +1,20 @@
+.ui-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ui-progress-root {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+}
+
+.ui-progress-indicator {
+  height: 100%;
+  width: 0;
+  background-color: #3b82f6;
+  transition: all 0.3s;
+}

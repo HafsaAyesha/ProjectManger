@@ -25,13 +25,8 @@ const App = () => {
     <Router>
       <Routes>
 
-        {/* DEFAULT page → Dashboard */}
-        <Route
-          path="/"
-          element={
-            user ? <Dashboard user={user} /> : <Navigate to="/login" />
-          }
-        />
+        {/* DEFAULT page → HOme */}
+        <Route path="/" element={<Home />} />
 
         {/* Home moved to /home (optional) */}
         <Route path="/home" element={<Home />} />

@@ -13,7 +13,7 @@ import Register from "./components/Auth/Register";
 import Dashboard from "./Pages/Dashboard";
 import KanbanPage from "./Pages/KanbanPage";
 
-import DashboardPage from "./Pages/DashboardPage";
+
 
 const App = () => {
   const [user, setUser] = useState(() => {
@@ -28,9 +28,7 @@ const App = () => {
         {/* DEFAULT page → HOme */}
         <Route path="/" element={<Home />} />
 
-        {/* Home moved to /home (optional) */}
-        <Route path="/home" element={<Home />} />
-
+  
         {/* Login */}
         <Route
           path="/login"
@@ -55,6 +53,19 @@ const App = () => {
           }
         />
 
+          <Route
+                path="/dashboard"
+                element={
+                  user ? (
+                    <Dashboard user={user} />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+
+              
+            
         {/* Kanban Page */}
         <Route
           path="/kanban"
@@ -67,16 +78,7 @@ const App = () => {
           }
         />
 
-        <Route
-          path="/dashboard"
-          element={
-            user ? (
-              <DashboardPage userId={user._id} user={user} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+
       </Routes>
     </Router>
   );

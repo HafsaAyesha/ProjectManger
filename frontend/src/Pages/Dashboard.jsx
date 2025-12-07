@@ -1,29 +1,37 @@
-import Sidebar from "../components/Sidebar/sidebar";
-import Navbar from "../components/navbar/Navbar";
-import Card from "../components/Card/card";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import PMNavbar from "../components/PMNavbar/PMNavbar";
+import PMFooter from "../components/PMFooter/PMFooter";
+import { DashboardView } from "../components/Dashboard/DashboardView";
 
-import "./Dashboard.css"
+const Dashboard = ({ user }) => {
+  const [tasks, setTasks] = useState([]);
 
+  // Fetch tasks from backend
+  const fetchTasks = async () => {
+    try {
+      const res = await axios.get(`/api/list/getTask/${user._id}`);
+      if (res.data.list) setTasks(res.data.list);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-function Dashboard({ user }) {
+  useEffect(() => {
+    if (user && user._id) {
+      fetchTasks();
+    }
+  }, [user]);
+
   return (
-    <div className="dashboard-container">
-      <Sidebar />
-      <div className="main-content">
-        <Navbar user={user} />
-
-        <h1>Dashboard</h1>
-
-        <div className="cards-container">
-          <Card 
-            title="Go to Kanban"
-            description="View and manage tasks"
-            onClick={() => window.location.href = "/kanban"}
-          />
-        </div>
+    <div className="dashboard-page-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <PMNavbar user={user} />
+      <div className="dashboard-container" style={{ flex: 1, padding: '2rem', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+        <DashboardView tasks={tasks} />
       </div>
+      <PMFooter />
     </div>
   );
-}
+};
 
 export default Dashboard;

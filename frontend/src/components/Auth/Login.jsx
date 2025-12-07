@@ -23,8 +23,9 @@ const Login = ({ setUser }) => {
             localStorage.setItem("user", JSON.stringify(userData));
 
 
-            // Navigate to Dashboard page with a success message in state
-            navigate("/dashboard", { state: { message: `Welcome, ${userData.username}! Login Successful.` } });
+            navigate("/dashboard", { 
+            state: { message: `Welcome, ${userData.username}! Login Successful.` } 
+            });
 
         } catch (error) {
             console.error(error);

@@ -1,0 +1,16 @@
+.sidebar {
+  width: 220px;
+  background: #222;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+.sidebar ul {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+.sidebar li {
+  margin: 15px 0;
+  cursor: pointer;
+}

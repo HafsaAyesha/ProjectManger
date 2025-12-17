@@ -10,8 +10,9 @@ const Dashboard = ({ user }) => {
   // Fetch tasks from backend
   const fetchTasks = async () => {
     try {
-      const res = await axios.get(`/api/list/getTask/${user._id}`);
-      if (res.data.list) setTasks(res.data.list);
+      
+      const res = await axios.get("http://localhost:1000/api/tasks");
+      if (res.data) setTasks(res.data);
     } catch (error) {
       console.log(error);
     }

@@ -28,7 +28,7 @@ const App = () => {
         {/* DEFAULT page → HOme */}
         <Route path="/" element={<Home />} />
 
-  
+
         {/* Login */}
         <Route
           path="/login"
@@ -53,25 +53,25 @@ const App = () => {
           }
         />
 
-          <Route
-                path="/dashboard"
-                element={
-                  user ? (
-                    <Dashboard user={user} />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
+        <Route
+          path="/dashboard"
+          element={
+            user ? (
+              <Dashboard user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-              
-            
+
+
         {/* Kanban Page */}
         <Route
           path="/kanban"
           element={
             user ? (
-              <KanbanPage userId={user._id} email={user.email} user={user} />
+              <KanbanPage />
             ) : (
               <Navigate to="/login" />
             )

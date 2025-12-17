@@ -17,6 +17,7 @@ const auth = require("./routes/auth");
 //list??
 const list = require("./routes/list");
 
+const taskRouter = require("./routes/tasks")
 
 //Route
 app.get("/", (req, res) => {
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 //Start Server - Now the routes will have access to req.body
 app.use("/api/v1", auth);
 app.use("/api/v2", list);
+app.use("/api/tasks",taskRouter);
 
 app.listen(PORT, () => {
     console.log("Server started on port", PORT);

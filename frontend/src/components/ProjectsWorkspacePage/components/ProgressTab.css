@@ -1,0 +1,26 @@
+.progress-tab-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Progress Tab Specific Overrides if needed, otherwise rely on Tailwind classes */
+.tab-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

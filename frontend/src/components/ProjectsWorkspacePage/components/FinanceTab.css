@@ -1,0 +1,245 @@
+.finance-tab {
+    max-width: 1000px;
+}
+
+/* Summary Cards */
+.finance-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.card-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.finance-section h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.finance-section h3::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 1.25em;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    margin-right: 0.75rem;
+    border-radius: 2px;
+}
+
+.summary-card.budget .card-value {
+    color: #667eea;
+    cursor: pointer;
+}
+
+.summary-card.income .card-value {
+    color: #16a34a;
+}
+
+.summary-card.pending .card-value {
+    color: #ca8a04;
+}
+
+.summary-card.profit .card-value {
+    color: #0891b2;
+}
+
+.budget-edit {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.budget-edit input {
+    width: 100%;
+    padding: 0.25rem;
+    font-size: 1.25rem;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+}
+
+/* Actions */
+.finance-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-action {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.btn-action.expense {
+    background-color: #fef2f2;
+    color: #ef4444;
+}
+
+.btn-action.active {
+    filter: brightness(0.95);
+    transform: translateY(1px);
+}
+
+/* Form */
+.transaction-form {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.transaction-form h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-form h3::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 1.25em;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    margin-right: 0.75rem;
+    border-radius: 2px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 1rem;
+}
+
+.form-row input {
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+}
+
+.btn-submit {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Transaction List */
+.transactions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.transactions-column h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.transactions-column h3::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 1.25em;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    margin-right: 0.75rem;
+    border-radius: 2px;
+}
+
+.transaction-list {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.trans-desc {
+    display: block;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.trans-date {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+.trans-amount {
+    font-weight: 600;
+}
+
+.transaction-item.income .trans-amount {
+    color: #16a34a;
+}
+
+.transaction-item.expense .trans-amount {
+    color: #ef4444;
+}
+
+.empty-text {
+    padding: 2rem;
+    text-align: center;
+    color: #9ca3af;
+    margin: 0;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .transactions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

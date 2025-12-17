@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PMNavbar from "../components/PMNavbar/PMNavbar";
 import PMFooter from "../components/PMFooter/PMFooter";
-import Kanban from "../components/Kanban/Kanban";
-import "../components/Kanban/Kanban.css";
+import Kanban from "../components/KanbanPage/Kanban";
+import "../components/KanbanPage/Kanban.css";
 
 const KanbanPage = ({ userId, email, user }) => {
   const location = useLocation();
@@ -21,7 +21,7 @@ const KanbanPage = ({ userId, email, user }) => {
 
   const closeMessage = () => setMessage("");
 
-//
+  //
   return (
     <div className="kanban-page-wrapper">
       <PMNavbar user={user} />

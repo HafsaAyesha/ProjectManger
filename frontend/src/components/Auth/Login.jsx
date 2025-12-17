@@ -15,7 +15,7 @@ const Login = ({ setUser }) => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:1000/api/v1/signin", data);
+            const response = await axios.post("/api/v1/signin", data);
             const userData = response.data.others;
 
 
@@ -23,8 +23,8 @@ const Login = ({ setUser }) => {
             localStorage.setItem("user", JSON.stringify(userData));
 
 
-            navigate("/dashboard", { 
-            state: { message: `Welcome, ${userData.username}! Login Successful.` } 
+            navigate("/dashboard", {
+                state: { message: `Welcome, ${userData.username}! Login Successful.` }
             });
 
         } catch (error) {

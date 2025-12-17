@@ -1,0 +1,59 @@
+/* Workspace Tabs Container */
+.workspace-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 2px solid #f3f4f6;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Hide scrollbar for cleaner look */
+}
+
+.workspace-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tab Button Base - Pillow/Card Style */
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    color: #64748b;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+}
+
+/* Hover State */
+.tab-btn:hover {
+    color: #374151;
+    background-color: #f1f5f9;
+}
+
+/* Active State - Solid Pill */
+.tab-btn.active {
+    color: white;
+    background-color: #667eea;
+    box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.4);
+}
+
+/* Remove Underline for Pill Style */
+.tab-btn.active::after {
+    display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .workspace-tabs {
+        gap: 1.5rem;
+    }
+
+    .tab-btn {
+        font-size: 0.9375rem;
+    }
+}

@@ -2,22 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PMNavbar from "../components/PMNavbar/PMNavbar";
 import PMFooter from "../components/PMFooter/PMFooter";
-import { DashboardView } from "../components/Dashboard/DashboardView";
+import { DashboardView } from "../components/DashboardPage/DashboardView";
 
 const Dashboard = ({ user }) => {
   const [tasks, setTasks] = useState([]);
 
-  // Fetch tasks from backend
-  const fetchTasks = async () => {
-    try {
-      const res = await axios.get(`/api/list/getTask/${user._id}`);
-      if (res.data.list) setTasks(res.data.list);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await axios.get(`/api/list/getTask/${user._id}`);
+        if (res.data.list) setTasks(res.data.list);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (user && user._id) {
       fetchTasks();
     }

@@ -1,0 +1,92 @@
+.workspace-header {
+    margin-bottom: 2rem;
+}
+
+.btn-back-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #6b7280;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+.btn-back-header svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.btn-back-header:hover {
+    background-color: #f9fafb;
+    color: #111827;
+    border-color: #d1d5db;
+}
+
+.header-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-title-large {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.status-badge-large {
+    padding: 0.375rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.status-on-hold {
+    background-color: #fefce8;
+    color: #ca8a04;
+}
+
+.status-completed {
+    background-color: #f3f4f6;
+    color: #6b7280;
+}
+
+.project-client {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-title-large {
+        font-size: 1.5rem;
+    }
+}

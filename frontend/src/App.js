@@ -12,6 +12,8 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Dashboard from "./Pages/Dashboard";
 import KanbanPage from "./Pages/KanbanPage";
+import ProjectsPage from "./Pages/Projects";
+import ProjectWorkspacePage from "./Pages/ProjectWorkspace";
 
 
 
@@ -28,7 +30,7 @@ const App = () => {
         {/* DEFAULT page → HOme */}
         <Route path="/" element={<Home />} />
 
-  
+
         {/* Login */}
         <Route
           path="/login"
@@ -53,25 +55,49 @@ const App = () => {
           }
         />
 
-          <Route
-                path="/dashboard"
-                element={
-                  user ? (
-                    <Dashboard user={user} />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
+        <Route
+          path="/dashboard"
+          element={
+            user ? (
+              <Dashboard user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-              
-            
+
+
         {/* Kanban Page */}
         <Route
           path="/kanban"
           element={
             user ? (
               <KanbanPage userId={user._id} email={user.email} user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        {/* Projects Page */}
+        <Route
+          path="/projects"
+          element={
+            user ? (
+              <ProjectsPage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        {/* Project Workspace Page */}
+        <Route
+          path="/projects/:projectId"
+          element={
+            user ? (
+              <ProjectWorkspacePage />
             ) : (
               <Navigate to="/login" />
             )

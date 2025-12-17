@@ -10,6 +10,7 @@ const PMNavbar = ({ user }) => {
       <ul className="pm-nav-links">
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/kanban">Kanban</Link></li>
+        <li><Link to="/projects">Projects</Link></li>
         <li><Link to="/tasks">Tasks</Link></li>
         <li><Link to="/calendar">Calendar</Link></li>
       </ul>

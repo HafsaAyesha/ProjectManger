@@ -1,0 +1,148 @@
+/* DocumentsTab.css */
+.documents-tab {
+    max-width: 1000px;
+}
+
+/* Upload Area */
+.upload-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.file-input {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.btn-select-file {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-upload {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-upload:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.selected-file-name {
+    margin-left: 1rem;
+    color: #4b5563;
+    font-size: 0.9375rem;
+    font-style: italic;
+}
+
+/* Documents List */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.document-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.document-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+}
+
+.doc-icon {
+    font-size: 2rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.doc-info {
+    margin-bottom: 1rem;
+}
+
+.doc-name {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.doc-meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.doc-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 0.75rem;
+}
+
+.btn-icon-action {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    color: #9ca3af;
+}
+
+.btn-icon-action:hover {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.btn-icon-action.delete:hover {
+    background-color: #fef2f2;
+    color: #ef4444;
+}
+
+.btn-icon-action.download:hover {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}

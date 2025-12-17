@@ -1,0 +1,87 @@
+/* Common Tab Styles */
+.tab-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 2rem 0;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.tab-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+.detail-section {
+    margin-bottom: 2.5rem;
+}
+
+.detail-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 1rem 0;
+}
+
+.detail-section p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Empty States */
+.empty-state-tab {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border: 2px dashed #e5e7eb;
+}
+
+.empty-state-tab p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin: 0.5rem 0;
+}
+
+.empty-state-tab p:first-child {
+    font-size: 2rem;
+}
+
+.empty-state-tab .subtitle {
+    font-size: 0.9375rem;
+    color: #9ca3af;
+}
+
+/* Common Section Header */
+.section-header {
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+    color: #111827;
+    font-size: 1.125rem;
+    margin: 0;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.section-header h3::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 1.25em;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    margin-right: 0.75rem;
+    border-radius: 2px;
+}

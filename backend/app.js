@@ -37,6 +37,7 @@ app.use("/api/v3", projectWorkspace);
 app.use("/api/v3", milestone);
 app.use("/api/v3", require("./routes/documents"));
 app.use("/api/v3", require("./routes/techLinks"));
+app.use("/api/dashboard", require("./routes/dashboard"));
 
 app.listen(PORT, () => {
     console.log("Server started on port", PORT);

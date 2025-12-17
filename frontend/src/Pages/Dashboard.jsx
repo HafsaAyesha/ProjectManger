@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PMNavbar from "../components/PMNavbar/PMNavbar";
 import PMFooter from "../components/PMFooter/PMFooter";
+import DashboardStats from "../components/DashboardPage/DashboardStats/DashboardStats";
 import { DashboardView } from "../components/DashboardPage/DashboardView";
 
 const Dashboard = ({ user }) => {
@@ -26,6 +27,7 @@ const Dashboard = ({ user }) => {
     <div className="dashboard-page-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <PMNavbar user={user} />
       <div className="dashboard-container" style={{ flex: 1, padding: '2rem', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+        <DashboardStats user={user} />
         <DashboardView tasks={tasks} />
       </div>
       <PMFooter />

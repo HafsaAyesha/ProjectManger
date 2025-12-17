@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PMNavbar from '../components/PMNavbar/PMNavbar';
+import PMSidebar from '../components/PMSidebar/PMSidebar';
 import PMFooter from '../components/PMFooter/PMFooter';
 import ProjectWorkspace from '../components/ProjectsWorkspacePage/ProjectWorkspace';
 
@@ -106,11 +107,16 @@ const ProjectWorkspacePage = () => {
     return (
         <div className="workspace-page-wrapper">
             <PMNavbar user={getUser()} />
-            <ProjectWorkspace
-                project={project}
-                onBack={handleBackToProjects}
-                onUpdate={fetchProject}
-            />
+            <div className="workspace-body" style={{ display: 'flex', flex: 1 }}>
+                <PMSidebar />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                    <ProjectWorkspace
+                        project={project}
+                        onBack={handleBackToProjects}
+                        onUpdate={fetchProject}
+                    />
+                </div>
+            </div>
             <PMFooter />
         </div>
     );

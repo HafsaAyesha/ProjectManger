@@ -14,7 +14,7 @@ import Dashboard from "./Pages/Dashboard";
 import KanbanPage from "./Pages/KanbanPage";
 import ProjectsPage from "./Pages/Projects";
 import ProjectWorkspacePage from "./Pages/ProjectWorkspace";
-
+import FreelancerProfile from './Pages/FreelancerProfile/FreelancerProfile';
 
 
 const App = () => {
@@ -98,6 +98,18 @@ const App = () => {
           element={
             user ? (
               <ProjectWorkspacePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        {/* Freelancer Profile Page */}
+        <Route
+          path="/profile"
+          element={
+            user ? (
+              <FreelancerProfile />
             ) : (
               <Navigate to="/login" />
             )

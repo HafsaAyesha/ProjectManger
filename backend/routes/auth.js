@@ -1,26 +1,36 @@
 const router = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+// Helper to sign token
+const signToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET || "default_secret_key", {
+        expiresIn: '7d'
+    });
+};
 
 //SIGN UP
 router.post("/register", async (req, res) => {
     try {
-        const {email, username, password} = req.body;
+        const { email, username, password } = req.body;
 
-        // Check if user exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        // Fix: Use async hash instead of hashSync
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user
-        const user = new User({email, username, password: hashedPassword});
+        const user = new User({ email, username, password: hashedPassword });
         await user.save();
-        
-        res.status(200).json({ message: "Registration Successful!", user });
+
+        // Generate Token
+        const token = signToken(user._id);
+
+        // Return user + token
+        const { password: pw, ...others } = user._doc;
+        res.status(200).json({ user: others, token, message: "Registration Successful!" });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ message: "Server Error" });
@@ -30,10 +40,10 @@ router.post("/register", async (req, res) => {
 //SIGN IN / LOGIN
 router.post("/signin", async (req, res) => {
     try {
-        const user = await User.findOne({email: req.body.email});
+        const user = await User.findOne({ email: req.body.email });
 
         if (!user) {
-            return res.status(400).json({message: "Please Sign Up First"}); // Added return
+            return res.status(400).json({ message: "Please Sign Up First" });
         }
 
         const isPasswordCorrect = await bcrypt.compare(
@@ -42,12 +52,16 @@ router.post("/signin", async (req, res) => {
         );
 
         if (!isPasswordCorrect) {
-            return res.status(400).json({message: "Password is not correct"}); // Added return
+            return res.status(400).json({ message: "Password is not correct" });
         }
 
-        const {password, ...others} = user._doc;
-        res.status(200).json({others});
-    } catch (error){
+        const { password, ...others } = user._doc;
+
+        // Generate Token
+        const token = signToken(user._id);
+
+        res.status(200).json({ others, token });
+    } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({ message: "Server Error during login" });
     }

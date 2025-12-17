@@ -295,3 +295,19 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Semantic Helper Classes */
+.icon-purple {
+    color: #7c3aed;
+}
+
+.header-meta {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.client-empty-state {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    text-align: center;
+}

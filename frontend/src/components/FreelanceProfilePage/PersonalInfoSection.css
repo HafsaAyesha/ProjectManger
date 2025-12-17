@@ -1,0 +1,41 @@
+/* PersonalInfoSection.css */
+.personal-details-section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.personal-details-section h4 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #444;
+}
+
+.details-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.detail-item-mini label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-item-mini p {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.detail-item-mini input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

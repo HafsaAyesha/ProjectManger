@@ -8,7 +8,8 @@
 }
 
 .info {
-    text-align: center; /* Ensures h2, p, and inline content are centered */
+    text-align: center;
+    /* Ensures h2, p, and inline content are centered */
     padding-top: 20px;
     border-radius: 12px;
     background: #f8f9fb;
@@ -30,7 +31,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px; /* Centers the block element horizontally */
+    margin: 0 auto 12px;
+    /* Centers the block element horizontally */
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 

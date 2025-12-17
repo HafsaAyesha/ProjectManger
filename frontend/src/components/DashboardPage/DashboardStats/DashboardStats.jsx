@@ -127,10 +127,10 @@ const DashboardStats = ({ user }) => {
                 <div className="stats-section-card">
                     <div className="stats-header">
                         <h3 className="stats-title">
-                            <Flag size={20} className="text-purple-600" />
+                            <Flag size={20} className="icon-purple" />
                             Upcoming Milestones
                         </h3>
-                        <span className="text-sm text-gray-500">Next 5 due</span>
+                        <span className="header-meta">Next 5 due</span>
                     </div>
                     <div className="stats-body">
                         {stats.upcomingMilestones && stats.upcomingMilestones.length > 0 ? (
@@ -218,7 +218,7 @@ const DashboardStats = ({ user }) => {
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-gray-400 text-sm text-center">No client data available.</p>
+                                <p className="client-empty-state">No client data available.</p>
                             )}
                         </div>
                     </div>

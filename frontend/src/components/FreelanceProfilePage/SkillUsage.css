@@ -1,0 +1,48 @@
+/* SkillUsage.css */
+.chart-empty-message {
+    color: #6b7280;
+    /* text-muted */
+    text-align: center;
+    /* text-center */
+    width: 100%;
+    /* w-100 */
+    padding: 2rem 0;
+}
+
+.skills-bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.skill-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-label {
+    width: 100px;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.skill-track {
+    flex: 1;
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+}

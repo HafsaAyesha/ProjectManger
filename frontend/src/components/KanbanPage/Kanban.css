@@ -1,157 +1,169 @@
 .kanban-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-task {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  
-  .add-task input,
-  .add-task select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .add-task button {
-    padding: 8px 12px;
-    background-color: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .add-task button:hover {
-    background-color: #5a67d8;
-  }
-  
-  .kanban-board {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .kanban-column {
-    flex: 1;
-    min-width: 250px;
-    background-color: #f4f4f4;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  .kanban-column h3 {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  .kanban-card {
-    background-color: white;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .kanban-card h4 {
-    margin: 0 0 5px 0;
-  }
-  
-  .kanban-card p {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .card-actions {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  
-  .card-actions button {
-    flex: 1;
-    padding: 5px;
-    font-size: 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .card-actions button:hover {
-    opacity: 0.8;
-  }
-  
-  .delete-btn {
-    background-color: #e53e3e;
-    color: white;
-  }
-  
-  .delete-btn:hover {
-    background-color: #c53030;
-  }
-  
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.add-task input,
+.add-task select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-task button {
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.add-task button:hover {
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+}
+
+.kanban-board {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.kanban-column {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.kanban-column h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.kanban-card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-card h4 {
+  margin: 0 0 5px 0;
+}
+
+.kanban-card p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 5px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card-actions button:hover {
+  opacity: 0.8;
+}
+
+.delete-btn {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c53030;
+}
+
 
 /* Success banner theme for Kanban page */
 .pm-success-banner {
-    position: fixed;
-    top: 80px; /* below PMNavbar */
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 300px;
-    max-width: 500px;
-    z-index: 1000;
-    animation: slideDown 0.4s ease;
+  position: fixed;
+  top: 80px;
+  /* below PMNavbar */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  max-width: 500px;
+  z-index: 1000;
+  animation: slideDown 0.4s ease;
+}
+
+/* Slide down animation */
+@keyframes slideDown {
+  0% {
+    transform: translate(-50%, -50px);
+    opacity: 0;
   }
-  
-  /* Slide down animation */
-  @keyframes slideDown {
-    0% { transform: translate(-50%, -50px); opacity: 0; }
-    100% { transform: translate(-50%, 0); opacity: 1; }
+
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
   }
-  
-  /* Close button */
-  .pm-success-banner .close-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 15px;
-    line-height: 1;
-    transition: transform 0.2s ease;
-  }
-  
-  .pm-success-banner .close-btn:hover {
-    transform: scale(1.2);
-  }
-  
-  .kanban-page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .kanban-container {
-    flex: 1; /* Take remaining space */
-  }
+}
+
+/* Close button */
+.pm-success-banner .close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 15px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.pm-success-banner .close-btn:hover {
+  transform: scale(1.2);
+}
+
+.kanban-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.kanban-container {
+  flex: 1;
+  /* Take remaining space */
+}

@@ -24,3 +24,7 @@
         transform: translateY(0);
     }
 }
+
+.card-content-padded {
+    padding: 1.5rem;
+}

@@ -156,7 +156,7 @@ const TechTab = ({ project }) => {
                                     onClick={() => handleEditClick(link)}
                                     title="Edit"
                                 >
-                                    <Edit2 size={18} className="text-blue-500" />
+                                    <Edit2 size={18} className="icon-action-blue" />
                                 </button>
                                 <button
                                     className="btn-icon-delete"

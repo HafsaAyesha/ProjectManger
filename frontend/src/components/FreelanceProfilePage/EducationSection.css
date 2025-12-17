@@ -1,0 +1,152 @@
+/* EducationSection.css */
+.section-empty-message {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Reusing styles from ExperienceSection mostly, 
+   but ensuring we handle any specific overrides if needed.
+   Currently using same classes: .profile-card, .timeline-item.
+   We just need to import them or copy them.
+   For safety/modularity, checking if we need specific overrides.
+*/
+
+.edu-icon {
+    background: #e6fffa;
+    color: #38b2ac;
+}
+
+/* Include base styles if not globally imported yet */
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+/* ... (We rely on global CSS or duplication? 
+   The prompt says "Component-Level CSS... Each component has its own CSS file".
+   So I should duplicate the shared styles or put them in a common file.
+   For strict modularity as requested, I will duplicate relevant blocks to ensure self-containment.)
+*/
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.card-header-row h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 15px;
+    position: relative;
+}
+
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    background: #e8f0fe;
+    color: #1a73e8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.timeline-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.edit-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.edit-group input,
+.edit-group textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.btn-delete-item {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.btn-add-section-mini {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+}
+
+.btn-add-section-mini:hover {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-icon-edit {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-icon-edit:hover {
+    background: #f0f0f0;
+    color: #333;
+}

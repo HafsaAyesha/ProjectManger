@@ -1,22 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./PMNavbar.css";
 
 const PMNavbar = ({ user }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <nav className="pm-navbar">
-      <div className="pm-brand">ProjectManager</div>
+      <Link to="/" className="pm-brand">Freelance Flow</Link>
 
-      <ul className="pm-nav-links">
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/kanban">Kanban</Link></li>
-        <li><Link to="/projects">Projects</Link></li>
-        <li><Link to="/tasks">Tasks</Link></li>
-        <li><Link to="/calendar">Calendar</Link></li>
-      </ul>
+      <div className="pm-right-section">
+        <div className="user-profile">
+          <i className="fas fa-user-circle profile-icon"></i>
+          <span className="username">{user ? user.username : "Guest"}</span>
+        </div>
 
-      <div className="user-info">
-        <span>Welcome, {user ? user.username : "Login"}</span>
+        {user && (
+          <button className="logout-btn-icon" onClick={handleLogout} title="Logout">
+            <i className="fas fa-sign-out-alt"></i>
+          </button>
+        )}
       </div>
     </nav>
   );

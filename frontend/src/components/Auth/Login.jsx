@@ -17,10 +17,11 @@ const Login = ({ setUser }) => {
         try {
             const response = await axios.post("/api/v1/signin", data);
             const userData = response.data.others;
-
+            const token = response.data.token;
 
             setUser(userData);
             localStorage.setItem("user", JSON.stringify(userData));
+            localStorage.setItem("token", token);
 
 
             navigate("/dashboard", {

@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import PMNavbar from '../components/PMNavbar/PMNavbar';
+import PMSidebar from '../components/PMSidebar/PMSidebar';
 import PMFooter from '../components/PMFooter/PMFooter';
 import Projects from '../components/ProjectsPage/Projects';
 import ProjectModal from '../components/ProjectsPage/ProjectModal';
+import './Projects.css';
 
 const ProjectsPage = () => {
+    // ... (state and logic remains unchanged) ...
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
-    const [modalMode, setModalMode] = useState('create'); // 'create' or 'edit'
+    const [modalMode, setModalMode] = useState('create');
     const [selectedProject, setSelectedProject] = useState(null);
 
     // Get user from localStorage
@@ -19,7 +22,7 @@ const ProjectsPage = () => {
         return user || null;
     }, []);
 
-    // Get user ID from localStorage (matching your existing auth pattern)
+    // Get user ID from localStorage
     const getUserId = useCallback(() => {
         const user = getUser();
         return user?._id || null;
@@ -38,7 +41,7 @@ const ProjectsPage = () => {
             }
 
             const response = await axios.get('http://localhost:1000/api/v3/projects', {
-                params: { id: userId } // Use params for GET request, not data
+                params: { id: userId }
             });
 
             setProjects(response.data.projects || []);
@@ -49,29 +52,26 @@ const ProjectsPage = () => {
         } finally {
             setLoading(false);
         }
-    }, [getUserId]); // getUserId is now stable due to useCallback
+    }, [getUserId]);
 
-    // Open modal for new project
+    // Handlers (remains unchanged)
     const handleNewProject = () => {
         setModalMode('create');
         setSelectedProject(null);
         setModalOpen(true);
     };
 
-    // Open modal for editing project
     const handleEditProject = (project) => {
         setModalMode('edit');
         setSelectedProject(project);
         setModalOpen(true);
     };
 
-    // Close modal
     const handleCloseModal = () => {
         setModalOpen(false);
         setSelectedProject(null);
     };
 
-    // Handle modal form submission
     const handleModalSubmit = async (formData) => {
         const userId = getUserId();
 
@@ -82,7 +82,6 @@ const ProjectsPage = () => {
 
         try {
             if (modalMode === 'create') {
-                // Create new project
                 const response = await axios.post('http://localhost:1000/api/v3/projects', {
                     id: userId,
                     ...formData,
@@ -92,10 +91,9 @@ const ProjectsPage = () => {
                 if (response.status === 201) {
                     alert('Project created successfully!');
                     handleCloseModal();
-                    fetchProjects(); // Refresh list
+                    fetchProjects();
                 }
             } else {
-                // Edit existing project
                 const response = await axios.put(`http://localhost:1000/api/v3/projects/${selectedProject._id}`, {
                     id: userId,
                     ...formData,
@@ -105,7 +103,7 @@ const ProjectsPage = () => {
                 if (response.status === 200) {
                     alert('Project updated successfully!');
                     handleCloseModal();
-                    fetchProjects(); // Refresh list
+                    fetchProjects();
                 }
             }
         } catch (err) {
@@ -114,7 +112,6 @@ const ProjectsPage = () => {
         }
     };
 
-    // Delete project
     const handleDeleteProject = async (projectId) => {
         const userId = getUserId();
 
@@ -134,7 +131,7 @@ const ProjectsPage = () => {
 
             if (response.status === 200) {
                 alert('Project deleted successfully!');
-                fetchProjects(); // Refresh list
+                fetchProjects();
             }
         } catch (err) {
             console.error('Error deleting project:', err);
@@ -142,21 +139,13 @@ const ProjectsPage = () => {
         }
     };
 
-    // Fetch projects on component mount
     useEffect(() => {
         fetchProjects();
     }, [fetchProjects]);
 
     if (error && error.includes('login')) {
         return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '100vh',
-                flexDirection: 'column',
-                gap: '1rem'
-            }}>
+            <div className="login-message-container">
                 <h2>Please Login</h2>
                 <p>{error}</p>
             </div>
@@ -169,15 +158,18 @@ const ProjectsPage = () => {
         <div className="projects-page-wrapper">
             <PMNavbar user={user} />
 
-            <div className="projects-page-content">
-                <Projects
-                    projects={projects}
-                    loading={loading}
-                    onNewProject={handleNewProject}
-                    onEditProject={handleEditProject}
-                    onDeleteProject={handleDeleteProject}
-                    onRefresh={fetchProjects}
-                />
+            <div className="projects-layout-container">
+                <PMSidebar />
+                <div className="projects-page-content">
+                    <Projects
+                        projects={projects}
+                        loading={loading}
+                        onNewProject={handleNewProject}
+                        onEditProject={handleEditProject}
+                        onDeleteProject={handleDeleteProject}
+                        onRefresh={fetchProjects}
+                    />
+                </div>
             </div>
 
             <PMFooter />
@@ -192,6 +184,7 @@ const ProjectsPage = () => {
         </div>
     );
 };
+
 
 export default ProjectsPage;
 

@@ -18,8 +18,11 @@ const Register = ({ setUser }) => {
             const response = await axios.post("/api/v1/register", data);
 
             const userData = response.data.user || { email: data.email, username: data.username };
+            const token = response.data.token;
+
             setUser(userData);
             localStorage.setItem("user", JSON.stringify(userData));
+            localStorage.setItem("token", token);
 
             // Navigate to Dashboard page with a success message in state
             navigate("/dashboard", { state: { message: `Welcome, ${userData.username}! Registration Successful.` } });

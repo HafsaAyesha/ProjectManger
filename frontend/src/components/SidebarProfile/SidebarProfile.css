@@ -1,0 +1,93 @@
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #f9fafb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.sidebar-profile:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-color: #e5e7eb;
+}
+
+.profile-avatar-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-avatar-placeholder {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.profile-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.profile-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-title {
+    font-size: 0.75rem;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-arrow {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-profile:hover .profile-arrow {
+    transform: translateX(3px);
+    color: #667eea;
+}
+
+/* Collapsed State Handling */
+.pm-sidebar.collapsed .sidebar-profile {
+    padding: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.pm-sidebar.collapsed .profile-info,
+.pm-sidebar.collapsed .profile-arrow {
+    display: none;
+}
+
+.pm-sidebar.collapsed .profile-avatar-container {
+    margin-right: 0;
+    width: 32px;
+    height: 32px;
+}

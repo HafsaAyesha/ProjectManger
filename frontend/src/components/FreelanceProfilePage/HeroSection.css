@@ -1,0 +1,153 @@
+/* HeroSection.css */
+.profile-header-card {
+    text-align: left;
+    /* Replaces text-left */
+    /* ... existing styles ... */
+
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.header-bg {
+    height: 180px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.header-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* Ensures button stays at bottom right relative to row */
+    padding: 0 30px 20px 30px;
+    margin-top: -70px;
+    /* Lifts avatar and name up into/over the bg */
+    position: relative;
+}
+
+.header-left-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+}
+
+.profile-avatar-large {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid white;
+    background: #f0f0f0;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder-large {
+    font-size: 3rem;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.btn-upload-avatar {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-upload-avatar:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.header-text-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+
+.header-text-upper {
+    margin-bottom: 60px;
+    /* Pushes Name up into the purple section. */
+    padding-bottom: 10px;
+}
+
+.header-text-upper h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-text-lower {
+    margin-top: 5px;
+}
+
+.header-text-lower h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    /* Dark color for white background */
+    font-weight: 500;
+}
+
+.input-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.input-title {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.btn-edit-section {
+    background: transparent;
+    border: 2px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 15px;
+    /* Adjust alignment with bottom text */
+}
+
+.btn-edit-section:hover,
+.btn-edit-section.active {
+    background: #6a11cb;
+    border-color: #6a11cb;
+    color: white;
+}

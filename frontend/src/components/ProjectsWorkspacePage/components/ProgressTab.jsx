@@ -106,11 +106,11 @@ const ProgressTab = ({ projectId, initialMilestones, onMilestoneChange, progress
 
 
             <div className="space-y-6">
-                <Card className="p-6">
+                <Card className="card-content-padded">
                     <GanttChart milestones={milestones} />
                 </Card>
 
-                <Card className="p-6">
+                <Card className="card-content-padded">
                     <ProgressMilestoneList
                         milestones={milestones}
                         onAdd={handleAddMilestone}

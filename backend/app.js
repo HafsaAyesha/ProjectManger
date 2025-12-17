@@ -37,6 +37,7 @@ app.use("/api/v3", projectWorkspace);
 app.use("/api/v3", milestone);
 app.use("/api/v3", require("./routes/documents"));
 app.use("/api/v3", require("./routes/techLinks"));
+app.use("/api/v2", require("./routes/profile")); // Use v2 or v1, user 'v2' used for list, maybe keep user stuff together or unique. Using /api/v2 so endpoint is /api/v2/profile/:id
 app.use("/api/dashboard", require("./routes/dashboard"));
 
 app.listen(PORT, () => {

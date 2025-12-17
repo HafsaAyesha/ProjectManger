@@ -28,6 +28,17 @@ const projectSchema = new mongoose.Schema(
         deadline: {
             type: Date,
         },
+        startDate: {
+            type: Date,
+        },
+        endDate: {
+            type: Date,
+        },
+        netProfit: {
+            type: Number,
+            default: 0,
+            min: 0,
+        },
         tags: {
             type: [String],
             default: [],

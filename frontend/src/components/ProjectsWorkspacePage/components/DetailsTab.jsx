@@ -204,7 +204,7 @@ const DetailsTab = ({ project, onUpdate }) => {
                             type="text"
                             value={editForm.title}
                             onChange={e => setEditForm({ ...editForm, title: e.target.value })}
-                            className="form-input text-lg font-medium"
+                            className="form-input form-input-lg"
                         />
                     </div>
 
@@ -411,7 +411,7 @@ const DetailsTab = ({ project, onUpdate }) => {
                                 </div>
                             </div>
                             {details.clientInfo?.notes && (
-                                <div className="client-notes mt-2">
+                                <div className="client-notes">
                                     <span className="info-label">Notes:</span>
                                     <p className="notes-text">{details.clientInfo.notes}</p>
                                 </div>

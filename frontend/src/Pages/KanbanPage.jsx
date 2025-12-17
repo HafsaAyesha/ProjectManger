@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PMNavbar from "../components/PMNavbar/PMNavbar";
+import PMSidebar from "../components/PMSidebar/PMSidebar";
 import PMFooter from "../components/PMFooter/PMFooter";
 import Kanban from "../components/KanbanPage/Kanban";
 import "../components/KanbanPage/Kanban.css";
@@ -23,7 +24,7 @@ const KanbanPage = ({ userId, email, user }) => {
 
   //
   return (
-    <div className="kanban-page-wrapper">
+    <div className="kanban-page-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <PMNavbar user={user} />
 
       {message && (
@@ -33,8 +34,11 @@ const KanbanPage = ({ userId, email, user }) => {
         </div>
       )}
 
-      <div className="kanban-container">
-        <Kanban userId={userId} email={email} user={user} />
+      <div style={{ display: 'flex', flex: 1 }}>
+        <PMSidebar />
+        <div className="kanban-container" style={{ flex: 1, minWidth: 0 }}>
+          <Kanban userId={userId} email={email} user={user} />
+        </div>
       </div>
 
       <PMFooter />

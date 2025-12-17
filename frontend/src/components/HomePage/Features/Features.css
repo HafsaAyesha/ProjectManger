@@ -24,11 +24,15 @@
 }
 
 .features-grid {
-    display: grid; /* Changed from flex-direction: column to grid for better responsiveness */
+    display: grid;
+    /* Changed from flex-direction: column to grid for better responsiveness */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; /* Increased gap for better spacing */
-    max-width: 1200px; /* Optional: Center the grid content */
-    margin: 0 auto; /* Optional: Center the grid content */
+    gap: 30px;
+    /* Increased gap for better spacing */
+    max-width: 1200px;
+    /* Optional: Center the grid content */
+    margin: 0 auto;
+    /* Optional: Center the grid content */
 }
 
 .feature-card {

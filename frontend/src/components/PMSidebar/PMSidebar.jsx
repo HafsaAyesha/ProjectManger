@@ -21,8 +21,6 @@ const PMSidebar = () => {
         { path: '/dashboard', label: 'Dashboard', icon: 'fa-tachometer-alt' },
         { path: '/kanban', label: 'Kanban', icon: 'fa-table-columns' },
         { path: '/projects', label: 'Projects', icon: 'fa-folder-open' },
-        { path: '/tasks', label: 'Tasks', icon: 'fa-list-check' },
-        { path: '/calendar', label: 'Calendar', icon: 'fa-calendar' }
     ];
 
     return (

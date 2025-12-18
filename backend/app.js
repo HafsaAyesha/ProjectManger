@@ -3,7 +3,7 @@ const app = express();
 const PORT = 1000;
 const cors = require("cors");
 
-// 🔑 SOLUTION: Place Middleware at the beginning
+//SOLUTION: Place Middleware at the beginning
 app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 // Enable CORS first, to handle requests from the frontend origin
 app.use(express.json()); // Enable JSON body parser *before* the routes are hit
@@ -37,8 +37,13 @@ app.use("/api/v3", projectWorkspace);
 app.use("/api/v3", milestone);
 app.use("/api/v3", require("./routes/documents"));
 app.use("/api/v3", require("./routes/techLinks"));
-app.use("/api/v2", require("./routes/profile")); // Use v2 or v1, user 'v2' used for list, maybe keep user stuff together or unique. Using /api/v2 so endpoint is /api/v2/profile/:id
+app.use("/api/v2", require("./routes/profile"));
 app.use("/api/dashboard", require("./routes/dashboard"));
+
+// Kanban routes
+app.use("/api/kanban", require("./routes/boards"));
+app.use("/api/kanban", require("./routes/columns"));
+app.use("/api/kanban", require("./routes/cards"));
 
 app.listen(PORT, () => {
     console.log("Server started on port", PORT);

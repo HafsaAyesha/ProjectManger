@@ -1,115 +1,235 @@
-.kanban-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
+/* Kanban Wrapper */
+.kanban-wrapper {
+  padding: 0;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.add-task {
+/* Board Selection Header */
+.kanban-header {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 0;
 }
 
-.add-task input,
-.add-task select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.board-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.add-task button {
-  padding: 8px 12px;
+.board-selector label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.board-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #111827;
+  background: #ffffff;
+  cursor: pointer;
+  min-width: 200px;
+  transition: all 0.2s ease;
+}
+
+.board-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.new-board-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.add-task button:hover {
+.new-board-btn:hover {
   box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
   transform: translateY(-1px);
 }
 
-.kanban-board {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.new-board-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
-.kanban-column {
-  flex: 1;
-  min-width: 250px;
-  background-color: #f4f4f4;
-  padding: 15px;
-  border-radius: 8px;
+/* Create Board Form */
+.create-board-form {
+  background: #ffffff;
+  padding: 2rem;
+  margin: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 2px solid #667eea;
 }
 
-.kanban-column h3 {
-  text-align: center;
-  margin-bottom: 15px;
+.create-board-form h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 1rem 0;
 }
 
-.kanban-card {
-  background-color: white;
-  padding: 10px;
+.board-input,
+.board-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
   border-radius: 6px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.875rem;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-.kanban-card h4 {
-  margin: 0 0 5px 0;
+.board-input:focus,
+.board-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.kanban-card p {
-  font-size: 14px;
-  margin-bottom: 10px;
+.board-textarea {
+  resize: vertical;
+  min-height: 60px;
 }
 
-.card-actions {
+.form-actions {
   display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.card-actions button {
-  flex: 1;
-  padding: 5px;
-  font-size: 12px;
+.btn-create,
+.btn-cancel {
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.card-actions button:hover {
-  opacity: 0.8;
-}
-
-.delete-btn {
-  background-color: #e53e3e;
+.btn-create {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
-.delete-btn:hover {
-  background-color: #c53030;
+.btn-create:hover {
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
 }
 
+.btn-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+/* Loading State */
+.kanban-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.kanban-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding: 2rem;
+}
+
+.empty-state-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.empty-state-icon {
+  width: 64px;
+  height: 64px;
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state-content p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 2rem 0;
+}
+
+.create-board-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-board-btn:hover {
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+}
 
 /* Success banner theme for Kanban page */
 .pm-success-banner {
   position: fixed;
   top: 80px;
-  /* below PMNavbar */
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -127,7 +247,6 @@ h2 {
   animation: slideDown 0.4s ease;
 }
 
-/* Slide down animation */
 @keyframes slideDown {
   0% {
     transform: translate(-50%, -50px);
@@ -140,7 +259,6 @@ h2 {
   }
 }
 
-/* Close button */
 .pm-success-banner .close-btn {
   background: transparent;
   border: none;
@@ -163,7 +281,39 @@ h2 {
   min-height: 100vh;
 }
 
-.kanban-container {
-  flex: 1;
-  /* Take remaining space */
+/* Responsive */
+@media (max-width: 768px) {
+  .kanban-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .board-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .board-select {
+    width: 100%;
+  }
+
+  .new-board-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .create-board-form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-create,
+  .btn-cancel {
+    width: 100%;
+  }
 }

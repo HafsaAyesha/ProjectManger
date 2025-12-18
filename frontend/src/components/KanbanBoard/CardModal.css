@@ -1,0 +1,363 @@
+.card-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.card-modal {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 10;
+}
+
+.card-modal__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #9ca3af;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.card-modal__content {
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.card-modal__section {
+    margin-bottom: 1.5rem;
+}
+
+.card-modal__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-modal__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.card-modal__input,
+.card-modal__textarea,
+.card-modal__select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: #111827;
+    transition: all 0.2s ease;
+}
+
+.card-modal__input:focus,
+.card-modal__textarea:focus,
+.card-modal__select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.card-modal__textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    min-height: 32px;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tag-remove {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.25rem;
+}
+
+.tag-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tag-add-btn {
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.tag-add-btn:hover {
+    background: #e5e7eb;
+}
+
+/* Comments */
+.comments-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f9fafb;
+    border-radius: 6px;
+}
+
+.comment-item {
+    background: #ffffff;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+.comment-item:last-child {
+    margin-bottom: 0;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.comment-date {
+    font-size: 0.625rem;
+    color: #9ca3af;
+}
+
+.comment-text {
+    font-size: 0.875rem;
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.comment-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-add-btn {
+    align-self: flex-end;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comment-add-btn:hover {
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Activity */
+.activity-list {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.activity-value {
+    font-size: 0.875rem;
+    color: #111827;
+}
+
+/* Footer */
+.card-modal__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e5e7eb;
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
+}
+
+.footer-right {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-delete,
+.btn-cancel,
+.btn-save {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-delete {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.btn-delete:hover {
+    background: #fecaca;
+}
+
+.btn-cancel {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.btn-cancel:hover {
+    background: #e5e7eb;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-save:hover {
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-modal {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .card-modal__header,
+    .card-modal__content,
+    .card-modal__footer {
+        padding: 1rem;
+    }
+
+    .card-modal__row {
+        grid-template-columns: 1fr;
+    }
+
+    .card-modal__footer {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-right {
+        width: 100%;
+    }
+
+    .btn-delete,
+    .btn-cancel,
+    .btn-save {
+        flex: 1;
+    }
+}

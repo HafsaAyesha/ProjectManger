@@ -1,6 +1,10 @@
 const Project = require("../models/project");
 const ProjectMilestone = require("../models/projectMilestone");
 const ProjectFinance = require("../models/projectFinance");
+const Card = require("../models/Card");
+const Column = require("../models/Column");
+const Board = require("../models/Board");
+const { getStatusFromColumn } = require("../utils/statusMapper");
 const mongoose = require("mongoose");
 
 exports.getDashboardStats = async (req, res) => {
@@ -179,5 +183,136 @@ exports.getDashboardStats = async (req, res) => {
     } catch (error) {
         console.error("Dashboard Stats Error:", error);
         res.status(500).json({ message: "Server Error Fetching Statistics" });
+    }
+};
+
+// NEW: Get task statistics from Kanban cards
+exports.getTaskStats = async (req, res) => {
+    try {
+        const { userId } = req.query;
+
+        if (!userId) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+
+        // Get all boards for user
+        const boards = await Board.find({
+            userId: new mongoose.Types.ObjectId(userId),
+            isArchived: false
+        });
+
+        if (boards.length === 0) {
+            // No boards yet - return empty stats
+            return res.json({
+                totalTasks: 0,
+                completedTasks: 0,
+                inProgressTasks: 0,
+                highPriorityTasks: 0,
+                tasksByStatus: {},
+                upcomingDeadlines: [],
+                overdueTasks: 0,
+                completionRate: 0,
+                tasks: []
+            });
+        }
+
+        const boardIds = boards.map(b => b._id);
+
+        // Get all cards for user's boards with populated columns
+        const cards = await Card.find({ boardId: { $in: boardIds } })
+            .populate('columnId')
+            .populate('assignee', 'username email')
+            .populate('createdBy', 'username email')
+            .sort({ createdAt: -1 });
+
+        // Calculate statistics
+        const totalTasks = cards.length;
+        const completedTasks = cards.filter(c =>
+            c.columnId?.title === 'Done'
+        ).length;
+        const inProgressTasks = cards.filter(c =>
+            c.columnId?.title === 'In Progress'
+        ).length;
+        const highPriorityTasks = cards.filter(c =>
+            c.priority === 'high'
+        ).length;
+
+        // Task breakdown by column/status
+        const tasksByStatus = {};
+        cards.forEach(card => {
+            const columnTitle = card.columnId?.title || 'Unknown';
+            tasksByStatus[columnTitle] = (tasksByStatus[columnTitle] || 0) + 1;
+        });
+
+        // Upcoming deadlines (next 7 days, not completed)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        const upcomingDeadlines = cards
+            .filter(c => {
+                if (!c.dueDate || c.columnId?.title === 'Done') return false;
+                const dueDate = new Date(c.dueDate);
+                return dueDate >= today && dueDate <= nextWeek;
+            })
+            .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+            .slice(0, 5)
+            .map(c => {
+                const dueDate = new Date(c.dueDate);
+                const diffTime = dueDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return {
+                    id: c._id,
+                    title: c.title,
+                    dueDate: c.dueDate,
+                    daysRemaining: diffDays,
+                    priority: c.priority,
+                    columnTitle: c.columnId?.title,
+                    status: getStatusFromColumn(c.columnId?.title)
+                };
+            });
+
+        // Overdue tasks (past due date, not completed)
+        const overdueTasks = cards.filter(c => {
+            if (!c.dueDate || c.columnId?.title === 'Done') return false;
+            return new Date(c.dueDate) < today;
+        }).length;
+
+        // Completion rate
+        const completionRate = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+        // Format tasks for Dashboard with status mapping
+        const formattedTasks = cards.map(card => ({
+            _id: card._id,
+            title: card.title,
+            description: card.description,
+            status: getStatusFromColumn(card.columnId?.title),
+            columnTitle: card.columnId?.title,
+            priority: card.priority,
+            dueDate: card.dueDate,
+            tags: card.tags,
+            assignee: card.assignee,
+            createdBy: card.createdBy,
+            createdAt: card.createdAt,
+            updatedAt: card.updatedAt,
+            boardId: card.boardId,
+            columnId: card.columnId?._id
+        }));
+
+        res.json({
+            totalTasks,
+            completedTasks,
+            inProgressTasks,
+            highPriorityTasks,
+            tasksByStatus,
+            upcomingDeadlines,
+            overdueTasks,
+            completionRate,
+            tasks: formattedTasks
+        });
+
+    } catch (error) {
+        console.error("Task stats error:", error);
+        res.status(500).json({ message: "Failed to fetch task statistics" });
     }
 };

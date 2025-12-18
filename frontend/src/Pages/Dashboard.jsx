@@ -8,19 +8,40 @@ import { DashboardView } from "../components/DashboardPage/DashboardView";
 
 const Dashboard = ({ user }) => {
   const [tasks, setTasks] = useState([]);
+  const [taskStats, setTaskStats] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchTasks = async () => {
+    const fetchKanbanTasks = async () => {
       try {
-        const res = await axios.get(`/api/list/getTask/${user._id}`);
-        if (res.data.list) setTasks(res.data.list);
+        setLoading(true);
+
+        // Fetch task statistics from Kanban
+        const statsRes = await axios.get(`/api/dashboard/task-stats?userId=${user._id}`);
+
+        if (statsRes.data) {
+          setTaskStats(statsRes.data);
+          setTasks(statsRes.data.tasks || []);
+        }
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching Kanban task data:", error);
+        // Fallback to empty state
+        setTasks([]);
+        setTaskStats({
+          totalTasks: 0,
+          completedTasks: 0,
+          inProgressTasks: 0,
+          highPriorityTasks: 0,
+          tasksByStatus: {},
+          completionRate: 0
+        });
+      } finally {
+        setLoading(false);
       }
     };
 
     if (user && user._id) {
-      fetchTasks();
+      fetchKanbanTasks();
     }
   }, [user]);
 
@@ -31,7 +52,22 @@ const Dashboard = ({ user }) => {
         <PMSidebar />
         <div className="dashboard-container" style={{ flex: 1, padding: '2rem', maxWidth: '100%', margin: '0 auto', width: '100%' }}>
           <DashboardStats user={user} />
-          <DashboardView tasks={tasks} />
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: '#6b7280' }}>
+              <div className="spinner" style={{
+                width: '40px',
+                height: '40px',
+                border: '4px solid #f3f4f6',
+                borderTop: '4px solid #667eea',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+                margin: '0 auto 1rem'
+              }}></div>
+              <p>Loading tasks...</p>
+            </div>
+          ) : (
+            <DashboardView tasks={tasks} taskStats={taskStats} />
+          )}
         </div>
       </div>
       <PMFooter />

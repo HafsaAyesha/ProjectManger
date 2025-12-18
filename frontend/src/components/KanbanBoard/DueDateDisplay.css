@@ -1,0 +1,34 @@
+.due-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.625rem;
+    font-weight: 500;
+}
+
+.due-date svg {
+    width: 12px;
+    height: 12px;
+}
+
+.due-date--overdue {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.due-date--due-today {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.due-date--due-soon {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.due-date--on-track {
+    background: #d1fae5;
+    color: #065f46;
+}

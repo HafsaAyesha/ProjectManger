@@ -1,115 +1,124 @@
 import React from 'react';
-import { Card } from "../ui/card";
-import { Progress } from "../ui/progress";
 import { CheckCircle2, Clock, AlertCircle, TrendingUp } from "lucide-react";
 import "./DashboardView.css";
 
-export function DashboardView({ tasks }) {
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter((t) => t.status === "done").length;
-    // Normalize status check: 'in-progress' or 'inProgress'
-    const inProgressTasks = tasks.filter((t) => t.status === "in-progress" || t.status === "inProgress").length;
-    // Handle priority if it exists, otherwise 0
-    const highPriorityTasks = tasks.filter((t) => t.priority === "high").length;
+export function DashboardView({ tasks, taskStats }) {
+    // Use taskStats from API if available, otherwise calculate from tasks
+    const stats = taskStats || {
+        totalTasks: tasks.length,
+        completedTasks: tasks.filter(t => t.columnTitle === 'Done' || t.status === 'done').length,
+        inProgressTasks: tasks.filter(t => t.columnTitle === 'In Progress' || t.status === 'in-progress' || t.status === 'inProgress').length,
+        highPriorityTasks: tasks.filter(t => t.priority === 'high').length,
+        completionRate: 0
+    };
 
-    const completionRate = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    // Calculate completion rate if not provided
+    if (!taskStats?.completionRate && stats.totalTasks > 0) {
+        stats.completionRate = (stats.completedTasks / stats.totalTasks) * 100;
+    }
 
-    const stats = [
+    const statCards = [
         {
             title: "Total Tasks",
-            value: totalTasks,
+            value: stats.totalTasks,
             icon: TrendingUp,
-            color: "stat-card__icon",
-            bgColor: "stat-card__icon-wrapper stat-gradient-blue",
+            colorClass: "purple",
         },
         {
             title: "Completed",
-            value: completedTasks,
+            value: stats.completedTasks,
             icon: CheckCircle2,
-            color: "stat-card__icon",
-            bgColor: "stat-card__icon-wrapper stat-gradient-green",
+            colorClass: "green",
         },
         {
             title: "In Progress",
-            value: inProgressTasks,
+            value: stats.inProgressTasks,
             icon: Clock,
-            color: "stat-card__icon",
-            bgColor: "stat-card__icon-wrapper stat-gradient-yellow",
+            colorClass: "blue",
         },
         {
             title: "High Priority",
-            value: highPriorityTasks,
+            value: stats.highPriorityTasks,
             icon: AlertCircle,
-            color: "stat-card__icon",
-            bgColor: "stat-card__icon-wrapper stat-gradient-red",
+            colorClass: "red",
         },
     ];
 
-    // Get tasks by status
-    const tasksByStatus = {
-        backlog: tasks.filter((t) => t.status === "backlog").length,
-        todo: tasks.filter((t) => t.status === "todo").length,
-        "in-progress": tasks.filter((t) => t.status === "in-progress" || t.status === "inProgress").length,
-        review: tasks.filter((t) => t.status === "review").length,
-        done: tasks.filter((t) => t.status === "done").length,
-    };
+    // Get task distribution by status/column
+    const tasksByStatus = taskStats?.tasksByStatus || {};
+
+    // If no tasksByStatus from API, calculate from tasks
+    const distribution = Object.keys(tasksByStatus).length > 0
+        ? tasksByStatus
+        : tasks.reduce((acc, task) => {
+            const key = task.columnTitle || task.status || 'Unknown';
+            acc[key] = (acc[key] || 0) + 1;
+            return acc;
+        }, {});
 
     return (
         <div className="dashboard-view">
             <div className="dashboard-header">
-                <h2>Dashboard</h2>
-                <p>Overview of your project progress</p>
+                <h2>Task Management</h2>
+                <p>Overview of your task progress</p>
             </div>
 
             <div className="dashboard-stats-grid">
-                {stats.map((stat) => {
+                {statCards.map((stat) => {
                     const Icon = stat.icon;
                     return (
-                        <Card key={stat.title} className="stat-card">
-                            <div className="stat-card__content">
-                                <div className="stat-card__info">
-                                    <p>{stat.title}</p>
-                                    <p>{stat.value}</p>
-                                </div>
-                                <div className={stat.bgColor}>
-                                    <Icon className={stat.color} />
-                                </div>
+                        <div key={stat.title} className="stat-card">
+                            <div className={`stat-icon-wrapper ${stat.colorClass}`}>
+                                <Icon size={24} />
                             </div>
-                        </Card>
+                            <div className="stat-content">
+                                <div className="stat-value">{stat.value}</div>
+                                <div className="stat-label">{stat.title}</div>
+                            </div>
+                        </div>
                     );
                 })}
             </div>
 
-            <Card className="completion-card">
+            {/* Completion Card - Matching stats-section-card pattern */}
+            <div className="completion-card">
                 <h3>Completion Rate</h3>
                 <div>
                     <div className="completion-row">
                         <span className="completion-label">Overall Progress</span>
-                        <span className="completion-value">{completionRate.toFixed(0)}%</span>
+                        <span className="completion-value">{stats.completionRate.toFixed(0)}%</span>
                     </div>
-                    <Progress value={completionRate} className="completion-bar" />
+                    <div className="progress-bar-container">
+                        <div
+                            className="progress-bar-fill"
+                            style={{ width: `${stats.completionRate}%` }}
+                        ></div>
+                    </div>
                 </div>
-            </Card>
+            </div>
 
-            <Card className="distribution-card">
+            {/* Distribution Card - Matching stats-section-card pattern */}
+            <div className="distribution-card">
                 <h3>Task Distribution</h3>
                 <div className="distribution-list">
-                    {Object.entries(tasksByStatus).map(([status, count]) => (
+                    {Object.entries(distribution).map(([status, count]) => (
                         <div key={status} className="distribution-item">
                             <div className="distribution-info">
                                 <div className="distribution-label">
-                                    {status.replace("-", " ")}
+                                    {status}
                                 </div>
-                                <Progress
-                                    value={totalTasks > 0 ? (count / totalTasks) * 100 : 0}
-                                    className="distribution-bar"
-                                />
+                                <div className="distribution-bar-bg">
+                                    <div
+                                        className="distribution-bar-fill"
+                                        style={{ width: `${stats.totalTasks > 0 ? (count / stats.totalTasks) * 100 : 0}%` }}
+                                    ></div>
+                                </div>
                             </div>
                             <span className="distribution-count">{count}</span>
                         </div>
                     ))}
                 </div>
-            </Card>
+            </div>
         </div>
     );
 }
